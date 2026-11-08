@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # RunAPI Sprint Countdown
 
 Static page hosted on Firebase Hosting (Google's hosting, served over Google's CDN with free SSL).
@@ -58,3 +59,7 @@ Edit `public/index.html`, then run `firebase deploy --only hosting` again.
 ## Note on the countdown
 
 The day count is computed in the visitor's browser from the current date, so it updates by itself. No rebuild needed.
+=======
+# runapi-countdown
+Deadline countdown and lock screen for RunAPI, a planned ReadyAPI replacement for API testing. Live countdown page, Sprint 1 milestones, release roadmap, and the Python scripts that generate the wallpapers.
+>>>>>>> 57e54ba210def047008feb1af0608050ca08deef
