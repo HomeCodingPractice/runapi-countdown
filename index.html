@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RunAPI · 13-Day Sprint Countdown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@500;800&display=swap">
+<style>
+:root {
+  --bg: #0B0F1A;
+  --card: #131A2B;
+  --line: #1d2640;
+  --mint: #00E5A8;
+  --violet: #7C5CFF;
+  --text: #E6EDF7;
+  --muted: #8793AB;
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 36px 22px 72px;
+}
+
+/* HERO SECTION */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 44px;
+  align-items: center;
+  min-height: 70vh;
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  line-height: 1.1;
+  margin: 0 0 14px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+.hero p.summary {
+  color: var(--muted);
+  margin: 0 0 26px;
+  max-width: 48ch;
+  font-size: 16px;
+}
+.big-count {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 800;
+  font-size: clamp(96px, 18vw, 168px);
+  line-height: .9;
+  letter-spacing: -.04em;
+  color: var(--mint);
+  text-shadow: 0 0 40px rgba(0, 229, 168, .32);
+  margin: 0;
+}
+.lbl {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 20px;
+  color: var(--text);
+  margin: 8px 0 0;
+}
+.phone-frame {
+  width: 100%;
+  border-radius: 36px;
+  border: 1px solid var(--line);
+  box-shadow: 0 0 60px rgba(124, 92, 255, .18);
+  background: var(--card);
+  display: block;
+}
+
+/* SECTIONS & TIMELINE */
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 80px 0 8px;
+  letter-spacing: -.01em;
+}
+.sub {
+  color: var(--muted);
+  margin: 0 0 24px;
+  max-width: 60ch;
+}
+.steps {
+  border-left: 2px solid var(--line);
+  margin: 0;
+  padding: 0 0 0 22px;
+  list-style: none;
+}
+.steps li {
+  position: relative;
+  padding: 0 0 26px;
+}
+.steps li::before {
+  content: "";
+  position: absolute;
+  left: -29px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--violet);
+}
+.steps li.last::before {
+  border-color: var(--mint);
+  background: var(--mint);
+}
+.steps .d {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: var(--mint);
+  font-size: 14px;
+}
+.steps b {
+  display: block;
+  font-weight: 600;
+  margin: 2px 0;
+  color: var(--text);
+}
+.steps span.t {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* TABLES & CARDS */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin-top: 12px;
+}
+td, th {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--line);
+}
+th {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 14px;
+}
+td.n {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: var(--mint);
+  white-space: nowrap;
+}
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 22px;
+  border-left: 3px solid var(--violet);
+}
+.card.m {
+  border-left-color: var(--mint);
+}
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.card p, .card li {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+}
+.card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+footer {
+  margin-top: 80px;
+  color: var(--muted);
+  font-size: 14px;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+
+/* ACCESSIBILITY & RESPONSIVE */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .big-count { text-shadow: none; }
+}
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .phone-frame {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div>
+      <h1>RunAPI: 13-Day Sprint Countdown</h1>
+      <p class="summary">I'm an experienced engineer building RunAPI, a ReadyAPI replacement for web and desktop. Sprint 1 ends 21 November 2026, when the architecture and documentation must be finished and published.</p>
+      <p class="big-count" id="d1">13</p>
+      <p class="lbl" id="u1">days left</p>
+    </div>
+    <!-- Replace the src with your image file/path -->
+    <img class="phone-frame" alt="RunAPI Lock Screen Wallpaper Preview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 650' width='300' height='650'%3E%3Crect width='300' height='650' fill='%230B0F1A'/%3E%3Ctext x='50%25' y='40%25' dominant-baseline='middle' text-anchor='middle' fill='%2300E5A8' font-family='monospace' font-size='80' font-weight='bold'%3E13%3C/text%3E%3Ctext x='50%25' y='48%25' dominant-baseline='middle' text-anchor='middle' fill='%23E6EDF7' font-family='monospace' font-size='16'%3Edays left%3C/text%3E%3C/svg%3E">
+  </section>
+
+  <!-- VERTICAL TIMELINE -->
+  <section>
+    <h2>Sprint 1 Plan</h2>
+    <p class="sub">Structured around 25 available hours per week into four deliverable milestones.</p>
+    <ol class="steps">
+      <li>
+        <span class="d">8 – 11 Nov</span>
+        <b>Lock scope and tech stack</b>
+        <span class="t">Define supported protocols, execution targets, and initial CI integrations.</span>
+      </li>
+      <li>
+        <span class="d">12 – 15 Nov</span>
+        <b>Architecture and module list</b>
+        <span class="t">Map core engine modules and cross-platform connection contracts.</span>
+      </li>
+      <li>
+        <span class="d">16 – 19 Nov</span>
+        <b>Module specifications</b>
+        <span class="t">Document functional requirements and test definitions per module.</span>
+      </li>
+      <li class="last">
+        <span class="d">20 – 21 Nov</span>
+        <b>Review and publish to Confluence</b>
+        <span class="t">Perform technical review and publish docs to the official space.</span>
+      </li>
+    </ol>
+  </section>
+
+  <!-- RELEASE ROADMAP TABLE -->
+  <section>
+    <h2>The Big Picture</h2>
+    <p class="sub">Long-term release roadmap connecting short-term sprints to production goals.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Release</th>
+          <th>Target Date</th>
+          <th>Core Deliverables</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="n">R1</td>
+          <td>7 Feb 2027</td>
+          <td>REST client</td>
+        </tr>
+        <tr>
+          <td class="n">R2 (v1.0)</td>
+          <td>30 Apr 2027</td>
+          <td>REST and SOAP test suites, desktop and web apps, CLI with Jenkins and GitHub Actions</td>
+        </tr>
+        <tr>
+          <td class="n">R3</td>
+          <td>30 Jul 2027</td>
+          <td>gRPC, AsyncAPI, Kafka, ReadyAPI import</td>
+        </tr>
+        <tr>
+          <td class="n">R4</td>
+          <td>30 Oct 2027</td>
+          <td>JMS, distributed load testing, more CI platforms</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- INFORMATIONAL CARDS -->
+  <section>
+    <h2>Execution Strategy</h2>
+    <div class="two">
+      <div class="card">
+        <h3>How the lock screen works</h3>
+        <p>Neon terminal style built around one prominent number. Aligned to clear standard clock, notification, and button zones for instant glanceability.</p>
+      </div>
+      <div class="card m">
+        <h3>Staying on track</h3>
+        <ul>
+          <li>Daily phone reminder for key tasks</li>
+          <li>Weekly wallpaper refresh</li>
+          <li>Sunday review against milestone dates</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Challenge deadline: 23 Nov 2026, 11:59 p.m. PT. <span id="u2"></span>
+  </footer>
+</div>
+
+<script>
+(function() {
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var sprintDue = new Date(2026, 10, 21); // 21 Nov 2026
+  var challengeDue = new Date(2026, 10, 23); // 23 Nov 2026
+  
+  var diffDays = Math.round((sprintDue - today) / 864e5);
+  var countElem = document.getElementById("d1");
+  var labelElem = document.getElementById("u1");
+  
+  if (countElem && labelElem) {
+    countElem.textContent = Math.abs(diffDays);
+    labelElem.textContent = diffDays < 0 ? "days since Sprint 1 was due" : (diffDays === 1 ? "day left" : "days left");
+  }
+  
+  var challengeDiff = Math.round((challengeDue - today) / 864e5);
+  var footerElem = document.getElementById("u2");
+  if (footerElem) {
+    footerElem.textContent = challengeDiff >= 0 ? challengeDiff + " days remaining to submit." : "Submission window closed.";
+  }
+})();
+</script>
+</body>
+</html>
